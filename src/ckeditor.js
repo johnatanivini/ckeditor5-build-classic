@@ -25,6 +25,9 @@ import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment'; 
+import Font from '@ckeditor/ckeditor5-font/src/font';
+import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 
 export default class ClassicEditor extends ClassicEditorBase {}
 
@@ -48,7 +51,10 @@ ClassicEditor.builtinPlugins = [
 	MediaEmbed,
 	Paragraph,
 	Table,
-	TableToolbar
+	TableToolbar,
+	Alignment,
+	Font,
+	PasteFromOffice
 ];
 
 // Editor configuration.
@@ -57,26 +63,46 @@ ClassicEditor.defaultConfig = {
 		items: [
 			'heading',
 			'|',
+			'fontSize',
+			'fontFamily',
+			'|',
+			'paragraph',
+			'alignment',
 			'bold',
 			'italic',
 			'link',
+			'|',
 			'bulletedList',
 			'numberedList',
+			'|',
 			'imageUpload',
 			'blockQuote',
 			'insertTable',
 			'mediaEmbed',
 			'undo',
-			'redo'
+			'redo',
+			'|',
+			'pastfromoffice',
 		]
 	},
 	image: {
 		toolbar: [
 			'imageStyle:full',
-			'imageStyle:side',
+			'imageStyle:alignLeft',
+			'imageStyle:alignRight',
+			'imageStyle:alignCenter',
 			'|',
 			'imageTextAlternative'
-		]
+		],
+		styles: [
+                // This option is equal to a situation where no style is applied.
+                'full',
+                // This represents an image aligned to the left.
+                'alignLeft',
+                // This represents an image aligned to the right.
+                'alignRight',
+                'alignCenter'
+            ]
 	},
 	table: {
 		contentToolbar: [
